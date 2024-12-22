@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Example</title>
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+<div id="app">
+    <h1 v-text="num"></h1>
+
+    <input type="button" value="加1" @click="add">
+
+    <!-- 正确的用法 -->
+    <input type="button" value="减1" @click="sub">
+
+    <!-- 错误的用法，不能在这里添加文本 -->
+    <input type="button" @click="sub">减1
+
+
+    <div>
+        <input type="button" value="双击归零" @dblclick="ret">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Vue -->
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+           num:0
+        },
+        methods:{
+            add(){
+                this.num++;
+            },
+            sub(){
+                this.num--;
+            },
+            ret(){
+                this.num = 0;
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

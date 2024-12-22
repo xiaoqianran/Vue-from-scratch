@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 每次渲染都会调用方法，带上 () -->
+        <div>{{ mTest() }}</div>
+        <div>{{ mTest() }}</div>
+        <div>{{ mTest() }}</div>
+
+        <!-- 计算属性是不带 () 的，因为它会缓存，只有在依赖的 data 或计算属性变化时才重新计算 -->
+        <div>{{ cTest }}</div>
+        <div>{{ cTest }}</div>
+        <div>{{ cTest }}</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                result: 0
+            },
+            methods: {
+                // mTest() 是方法，每次调用都会执行
+                mTest() {
+                    console.log("执行了 methods!");
+                    return 1;
+                }
+            },
+            computed: {
+                // cTest 是计算属性，基于 data 或其他计算属性，只有依赖发生变化时才重新计算
+                cTest() {
+                    console.log("执行了 computed");
+                    return 2;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

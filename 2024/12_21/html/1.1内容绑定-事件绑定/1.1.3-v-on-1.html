@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    <div id="app">
+        <input type="button" value="v-on指令" v-on:click="study">
+
+        <input type="button" value="v-on简写" @click="study">
+
+        <input type="button" value="双击事件" @dblclick="changeFood">
+
+        <h1 v-text="food"></h1>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                food: "鸡蛋炒米饭"
+            },
+            methods: {
+                study: function () {
+                    alert("学习 Java!");
+                },
+                changeFood() {
+                    this.food += "超级好吃！"
+                }
+            }
+        });
+    </script>
+</body>
+
+
+
+
+</html>

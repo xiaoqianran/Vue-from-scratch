@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue事件修饰符示例</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background: #e0e0e0;
+            margin: 10px;
+        }
+        .keyboard-test {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- 事件修饰符示例 -->
+        <h3>事件修饰符示例：</h3>
+        
+        <!-- .stop示例 -->
+        <div class="outer" @click="outerClick">
+            外层div
+            <div class="inner" @click.stop="innerClick">
+                内层div (.stop)
+            </div>
+        </div>
+
+        <!-- .prevent示例 -->
+        <p>
+            <a href="https://www.baidu.com" @click.prevent="preventClick">
+                阻止默认跳转 (.prevent)
+            </a>
+        </p>
+
+        <!-- .once示例 -->
+        <button @click.once="onceClick">
+            只能点击一次 (.once)
+        </button>
+
+        <!-- 按键修饰符示例 -->
+        <h3>按键修饰符示例：</h3>
+        <div class="keyboard-test">
+            <input type="text" 
+                   @keyup.enter="enterPress" 
+                   placeholder="按回车触发">
+        </div>
+
+        <div class="keyboard-test">
+            <input type="text" 
+                   @keyup.esc="escPress" 
+                   placeholder="按ESC触发">
+        </div>
+
+        <div class="keyboard-test">
+            <!-- 组合按键示例 -->
+            <input type="text" 
+                   @keyup.enter.esc="combinedPress" 
+                   placeholder="按回车或ESC触发">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                // 事件修饰符相关方法
+                outerClick() {
+                    alert('外层div被点击');
+                },
+                innerClick() {
+                    alert('内层div被点击（不会冒泡到外层）');
+                },
+                preventClick() {
+                    alert('链接点击事件被触发���但不会跳转）');
+                },
+                onceClick() {
+                    alert('这个按钮只能被点击一次！');
+                },
+
+                // 按键修饰符相关方法
+                enterPress() {
+                    alert('你按下了回车键！');
+                },
+                escPress() {
+                    alert('你按下了ESC键！');
+                },
+                combinedPress() {
+                    alert('你按下了回车键或ESC键！');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
